@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "publication": "SPAR datasets only",
+  "payload_datasets": [
+    "meta",
+    "capacities",
+    "indicators",
+    "cap",
+    "ind",
+    "comparisons",
+    "ind_means",
+    "comments",
+    "words",
+    "implementation",
+    "areas",
+    "raw",
+    "submissions",
+    "map_names"
+  ],
+  "excluded_datasets": 0,
+  "capacity_rows": 955,
+  "indicator_rows": 954,
+  "unchanged_spar_datasets": [
+    "areas",
+    "cap",
+    "capacities",
+    "comments",
+    "comparisons",
+    "implementation",
+    "ind",
+    "ind_means",
+    "indicators",
+    "map_names",
+    "raw",
+    "submissions",
+    "words"
+  ],
+  "html_bytes": 16808867,
+  "sha256": "a5d8e1b852536373abea3c4352aba3f51966d6bb13c3f90c68a7e2e522d12000",
+  "note": "Terms in original SPAR comments are retained verbatim; dataset provenance is enforced by allowlist."
+}

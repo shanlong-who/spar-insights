@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "files_checked": ["README.md", "BUILDING.md", ".gitignore", "build.R", "dashboard.qmd", "R/prepare_data.R", "assets/dashboard.js", "assets/dashboard-core.js", "assets/dashboard.css", "validation/prepare_checks.R", "validation/check_browser_math.cjs", "validation/check_public_release.cjs", "validation/check_source_release.R", "validation/QA.md", "validation/build_manifest.json", "validation/r_checks.json", "validation/browser_math_checks.json", "validation/public_release_checks.json"],
+  "findings": [],
+  "sha256": {
+    "README.md": "b44fb03cda9e7d0043fb4731feca5ecde7013807c3cd9f895c720c88abcca67a",
+    "BUILDING.md": "f2788a703d8d70ab7d959531ca12ae9d9334439551c842333ea726c0b5000c64",
+    ".gitignore": "698196d5214c7acb678a8d688a55a5e512824a60fa9cd995532fa72d3a5fcadf",
+    "build.R": "36ad1a664ad90c3477ec2ae1df168296ae23794c3459a9abf1700f927b8e2abd",
+    "dashboard.qmd": "b313e2abc0032fb670c7d0c528ce0ee086e7a93ec7c3fd70abae6fbb68c8b627",
+    "R/prepare_data.R": "f1770db05e2c7bcb4ddc884abbae74d75ac2af7878d1327a9bbc25124f246bcb",
+    "assets/dashboard.js": "e42c535574fca71d28411659a28e65a226d5fecee35cbfc6108935215636cc67",
+    "assets/dashboard-core.js": "55e71d038c550ffaf6aace1ea1f730a5d74e1f570dae6a58c80f62526c610e99",
+    "assets/dashboard.css": "7635b60ce0771d49d3b9462833b4d4765f86e52e26bfb50c50559f11d529db3c",
+    "validation/prepare_checks.R": "ba8c59e04e4f2cbbfc387542ce14e794b21369db56e1e49d59484c2f2aa3e882",
+    "validation/check_browser_math.cjs": "de60b7869e4ec0dd819141e07d3a4f74804ddf2837f850e1254960f25ca60acb",
+    "validation/check_public_release.cjs": "3eb405b0e8f7d0f93d7c72a9cfa12355d93f81963d7645a42e667988c9360f34",
+    "validation/check_source_release.R": "3436915a1467d611643072180090d4d6196f48fee45f51bbc93e5d403727cf9d",
+    "validation/QA.md": "ffd9f7e6f048a5cb3977503783427af077b04eac34bf04b56803a060af61cb59",
+    "validation/build_manifest.json": "c75c5a7f556a4dc69a2cbc79dc26510eb0cfe9144468b022ac7df2000ce5507b",
+    "validation/r_checks.json": "0e5b3e55e624a8b2fc89938b6c330a896290370c88108d7ae447e2b590e155e0",
+    "validation/browser_math_checks.json": "d4be7429467e1a973c94f07fb628b352f966e62eaecbf73fff2595bef8565d3e",
+    "validation/public_release_checks.json": "73bb102c253b48f8ea2cfa01188f2b370c8a5ec89b8513efb1a386fd62df4ad3"
+  },
+  "scope": "Explicit source and validation file allowlist; no input datasets or caches"
+}

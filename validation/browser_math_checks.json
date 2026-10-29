@@ -1,0 +1,7 @@
+{
+  "checks": 15693,
+  "scenarios": 74,
+  "status": "passed",
+  "tolerance": 1e-9,
+  "external_script_or_stylesheet_dependencies": 0
+}
