@@ -1,0 +1,152 @@
+---
+title: "SPAR Insights"
+subtitle: "Public self-assessment data | 2021-2025"
+format:
+  dashboard:
+    orientation: rows
+    scrolling: true
+    embed-resources: true
+    theme: default
+    include-in-header: build/header.html
+    include-after-body: build/client.html
+    navigation: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+source("R/prepare_data.R")
+if (!exists("bundle")) bundle <- prepare_data("../data/app_data.RData")
+```
+
+# {.sidebar}
+
+```{=html}
+<div class="eyebrow">Health security tracker</div>
+<p class="subtitle">Explore publicly available SPAR self-assessment results.</p>
+<span class="status-pill">SPAR data explorer</span>
+<label for="year">Reporting year</label><select id="year" aria-label="Reporting year"></select>
+<label for="region">WHO region</label><select id="region" aria-label="WHO region"></select>
+<label for="country">State Party</label><select id="country" aria-label="State Party"></select>
+<p class="subtitle" id="filter-summary" aria-live="polite"></p>
+<button id="reset-filters">Reset filters</button>
+<hr><p class="subtitle">Scores reflect reported assessments. Coverage and reporting countries may change between years.</p>
+<p class="subtitle">Data snapshot: 2021–2025<br>All interactions run in your browser.</p>
+```
+
+# Overview
+
+## Row
+
+```{=html}
+<div data-page="overview">
+<div class="context-line" data-context></div><h1 class="page-title">A global view of reported capacity</h1>
+<p class="page-lead">Explore overall scores or a single SPAR capacity. Move the threshold to compare countries at or above the selected score.</p>
+<div id="overview-metrics" class="metric-grid"></div>
+<div class="controls"><div class="field"><label for="map-metric">Score shown on the map</label><select id="map-metric"></select></div><div class="field"><label for="threshold">Score threshold: <span id="threshold-value">60</span> / 100</label><input id="threshold" type="range" min="0" max="100" value="60"></div></div>
+<div class="panel"><h3>Reported SPAR scores worldwide</h3><p class="note">Map: selected year and region. Click a country to open its score profile. Hover to inspect the score.</p><div id="world-map" class="chart map" role="img" aria-label="World map of reported scores"></div><p id="map-coverage" class="note"></p></div>
+<div class="chart-grid"><div class="panel"><h3>Selected region: threshold distribution</h3><div id="threshold-pie" class="chart"></div></div><div class="panel"><h3>Threshold distribution by WHO region</h3><p class="note">All regions, for the selected year.</p><div id="threshold-regions" class="chart"></div></div></div>
+</div>
+```
+
+# Regions
+
+## Row
+
+```{=html}
+<div data-page="regions"><div class="context-line" data-context></div><h1 class="page-title">Compare regional patterns</h1><p class="page-lead">Regional distributions and capacity means use all reporting countries in the selected year. The level distribution follows the selected region.</p>
+<div class="chart-grid"><div class="panel"><h3>Overall score distribution</h3><div id="region-box" class="chart"></div></div><div class="panel"><h3>Mean overall score</h3><div id="region-mean" class="chart"></div></div><div class="panel full"><h3>Capacity scores by region</h3><p class="note">Colour shows score level; hover for the exact mean. Level bands: (0,20], (20,40], (40,60], (60,80], (80,100]. Zero is shown separately.</p><div id="region-heat" class="chart"></div></div><div class="panel"><h3>Capacity level distribution</h3><div id="capacity-levels" class="chart"></div></div><div class="panel"><h3>Overall level distribution</h3><div id="overall-levels" class="chart"></div></div><div class="panel full"><h3>Overall levels across regions</h3><p class="note">Tile area is proportional to the number of reporting countries.</p><div id="level-mosaic" class="chart"></div></div></div></div>
+```
+
+# Countries
+
+## Row
+
+```{=html}
+<div data-page="countries"><div class="context-line" data-context></div><h1 class="page-title">Country score profiles</h1><p class="page-lead">Select a State Party in the sidebar for its SPAR scores.</p>
+<div id="country-empty" class="notice">Select one State Party to view its SPAR profile.</div>
+<div id="country-content"><div class="chart-grid"><div class="panel"><h3>SPAR capacity scores</h3><div id="country-cap" class="chart"></div></div><div class="panel"><h3>SPAR indicator scores</h3><div id="country-ind" class="chart"></div></div><div class="panel"><h3>Highest and lowest capacity scores</h3><div id="cap-extremes" class="small-table"></div></div><div class="panel"><h3>Highest and lowest indicator scores</h3><div id="ind-extremes" class="small-table"></div></div></div></div>
+</div>
+```
+
+# Compare years
+
+## Row
+
+```{=html}
+<div data-page="compare"><div class="context-line" data-context></div><h1 class="page-title">Track scores over time</h1><p class="page-lead">Compare the selected country, region or global aggregate. Each annual aggregate uses that year's available observations; this is not a fixed country cohort.</p>
+<div class="controls"><div class="field"><label>Comparison years</label><div id="comparison-year-options" class="year-options"></div></div><div class="field"><label for="compare-capacity">Capacity</label><select id="compare-capacity"></select></div><div class="field"><label for="compare-indicator">Indicator</label><select id="compare-indicator"></select></div></div>
+<div class="chart-grid three"><div class="panel"><h3>Overall score</h3><div id="trend-overall" class="chart"></div></div><div class="panel"><h3>Selected capacity</h3><div id="trend-capacity" class="chart"></div></div><div class="panel"><h3>Selected indicator</h3><div id="trend-indicator" class="chart"></div></div></div><div class="panel"><h3>Comparison values</h3><div id="trend-table" class="small-table"></div><button id="download-comparison">Download comparison CSV</button></div></div>
+```
+
+# Comments
+
+## Row
+
+```{=html}
+<div data-page="comments"><div class="context-line" data-context></div><h1 class="page-title">Explore the language of self-assessment</h1><p class="page-lead">Search the bundled SPAR comments using literal, case-sensitive terms separated by commas. Counts measure occurrences in text and do not measure priority, performance or evidence quality.</p>
+<div class="controls"><div class="field"><label for="spar-keywords">SPAR keywords</label><input type="text" id="spar-keywords" value="training, capacity building"></div><div class="field"><label for="word-capacity">Capacity for word frequencies</label><select id="word-capacity"></select></div></div>
+<div class="chart-grid"><div class="panel"><h3>Keyword occurrences by capacity</h3><div id="keyword-chart" class="chart"></div><div id="keyword-table" class="small-table"></div></div><div class="panel"><h3>Most frequent words</h3><p class="note">Uses the original tokenised comments and stop-word list.</p><div id="word-cloud" class="cloud"></div><div id="word-chart" class="chart"></div></div></div>
+</div>
+```
+
+# Tables
+
+## Row
+
+```{=html}
+<div data-page="tables"><div class="context-line" data-context></div><h1 class="page-title">Inspect and download the data</h1><p class="page-lead">Sidebar filters apply to both score tables and the linked country chart. Table search and column filters refine each table locally. CSV downloads use the sidebar selection.</p><div class="table-actions"><button id="download-capacity" class="primary">Download capacity CSV</button><button id="download-indicator">Download indicator CSV</button></div><p id="table-count" class="note"></p>
+</div>
+```
+
+```{r}
+score_table(bundle$cap, bundle$source_env$spar_cap$capacity, "spar-capacity", bundle$source_env$spar_cap$detail)
+```
+
+```{r}
+shared_plot <- SharedData$new(as.data.frame(bundle$cap), key = ~key, group = "spar-capacity")
+plot_ly(shared_plot, x = ~country, y = ~overall, color = ~region, type = "scatter", mode = "markers",
+        colors = RColorBrewer::brewer.pal(6, "Dark2"), text = ~paste(country, year, region),
+        hovertemplate = "%{text}<br>Overall: %{y:.1f}<extra></extra>") |>
+  layout(yaxis = list(title = "Overall SPAR score", range = c(0, 100)),
+         xaxis = list(title = "State Party", showticklabels = FALSE),
+         margin = list(l = 60, r = 20, t = 20, b = 45), paper_bgcolor = "#ffffff", plot_bgcolor = "#ffffff") |>
+  config(displaylogo = FALSE, responsive = TRUE)
+```
+
+```{r}
+score_table(bundle$ind, bundle$source_env$spar_ind$indicator, "spar-indicator", bundle$source_env$spar_ind$detail)
+```
+
+```{=html}
+<details><summary>Capacity and indicator definitions</summary><div id="lookup-tables" class="small-table"></div></details>
+```
+
+# Reporting
+
+## Row
+
+```{=html}
+<div data-page="reporting"><div class="context-line" data-context></div><h1 class="page-title">Understand the reporting process</h1><p class="page-lead">Submission counts, implementation status and the processes used to compile reports.</p>
+<div class="notice">The original app's fixed regional denominators do not match the 2025 source coverage. Only observed submissions are shown. “Not submitted” counts and percentages require verified annual denominators.</div>
+<div class="chart-grid"><div class="panel"><h3>Reported submissions by region</h3><p class="note">Source rows before the original complete-case score filter.</p><div id="submission-regions" class="chart"></div></div><div class="panel"><h3>Submissions by year</h3><p class="note">All regions; sidebar country filter does not apply.</p><div id="submission-years" class="chart"></div></div><div class="panel"><h3>Indicator implementation status</h3><p class="note">Selected year, region and State Party. Multiple statuses may be reported.</p><div id="implementation" class="chart tall"></div></div><div class="panel"><h3>Areas involved</h3><p class="note">Selected year, region and State Party. Counts retain repeated source entries.</p><div id="areas" class="chart tall"></div></div><div class="panel"><h3>Report compilation</h3><p class="note">Selected year and region.</p><div id="compilation" class="chart"></div></div><div class="panel"><h3>Compilation across regions</h3><p class="note">All regions for the selected year.</p><div id="compilation-mosaic" class="chart"></div></div><div class="panel"><h3>Consultative mechanisms</h3><p class="note">Selected year and region; multiple mechanisms may be reported.</p><div id="consultations" class="chart"></div></div><div class="panel"><h3>Sectors involved</h3><p class="note">Selected year and region; multiple sectors may be reported.</p><div id="sectors" class="chart tall"></div></div></div></div>
+```
+
+# About
+
+## Row
+
+```{=html}
+<div data-page="about"><h1 class="page-title">About SPAR Insights</h1>
+<p class="page-lead">An independent explorer of publicly available States Parties Self-Assessment Annual Reporting (SPAR) data.</p>
+<div class="panel"><h3>Source and coverage</h3><p>This snapshot covers SPAR reporting years 2021â€“2025. Scores and comments are reported by States Parties. This website does not conduct an independent assessment or establish readiness for a specific emergency.</p>
+<p><a href="https://www.who.int/data/gho/data/themes/international-health-regulations-%282005%29-monitoring-framework" target="_blank" rel="noopener">WHO SPAR information and data</a> Â· <a href="https://extranet.who.int/e-spar" target="_blank" rel="noopener">e-SPAR platform</a></p>
+<h3>Interpretation</h3><p>Annual reporting coverage can change. Comparisons use the countries available in each year and do not represent a fixed cohort. Missing values and zero values remain distinct. Keyword frequency is a count of text occurrences, not a measure of evidence quality or priority.</p>
+<p>Score tables retain the existing complete-case exclusions for 2024 and 2025. Submission counts use the source rows before those exclusions. Counts describe this source snapshot and may differ from later official releases.</p>
+<h3>Use and maintenance</h3><p>Built and maintained by Shanlong Ding. This is an independent data exploration tool and is not an official WHO publication. Consult the original data and documentation before using results for decisions.</p>
+<p>The HTML can also be saved for offline use in a current desktop browser. Data and browser dependencies are embedded. No sign-in, external model service or API key is needed.</p>
+<div id="source-info" class="note"></div></div><p class="footer-note">Built with R, Quarto, Crosstalk, Plotly, Reactable and ECharts.</p></div>
+```

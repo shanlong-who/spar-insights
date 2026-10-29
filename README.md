@@ -30,4 +30,7 @@ This is an independent data exploration tool and is not an official WHO publicat
 
 All 15,693 calculation and packaging checks passed across 74 filter scenarios. The compressed HTML was inspected to confirm that only SPAR datasets are included. The deployed HTML matches the audited local release exactly.
 
-Build and validation scripts are maintained locally and are not distributed in this publication repository.
+Build and validation source code is included in this repository. See
+[BUILDING.md](BUILDING.md) for dependencies, the required SPAR input objects,
+rebuilding and validation. Local input files, credentials and caches are not
+distributed.

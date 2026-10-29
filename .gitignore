@@ -1,0 +1,30 @@
+/build/
+/dashboard.knit.md
+/dashboard.knit_files/
+/.quarto/
+/validation/reference_values.json
+/validation/source_integrity.csv
+
+# Local input data and session state
+/data/
+/data-raw/
+*.RData
+*.rdata
+*.rds
+.Rhistory
+.Ruserdata
+.Rproj.user/
+
+# Local credentials and private key material
+.Renviron
+.Renviron.*
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local preview captures
+/validation/*.png
